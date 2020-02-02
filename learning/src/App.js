@@ -1,8 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import axios from "axios";
+import "./App.css";
 
 function App() {
+
+// Come back to this when you get to the side effects lecture.
+
+let [data, setData] = useState();
+
+const url = "https://api.github.com/users/MatthewCebenka/followers";
+useEffect(() => {
+  axios
+    .get(url)
+    .then(response => {
+      console.log(response.data);
+      setData(response);
+      console.log(data);
+    })
+    .catch(error => console.log("ERROR"));
+}, []);
+// console.log(data);
   return (
     <div className="App">
       <header className="App-header">
